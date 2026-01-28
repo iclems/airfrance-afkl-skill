@@ -1,0 +1,11 @@
+# secrets/state
+state/
+*.skill
+
+# OS/editor
+.DS_Store
+.vscode/
+.idea/
+
+# Node
+node_modules/
