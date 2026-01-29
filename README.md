@@ -47,12 +47,21 @@ node skills/airfrance-afkl/scripts/afkl_flightstatus_query.mjs \
 
 ```bash
 node skills/airfrance-afkl/scripts/afkl_watch_flight.mjs \
-  --carrier AF --flight 7 --origin JFK --dep-date 2026-01-29 --prev-depth 1
+  --carrier AF --flight 7 --origin JFK --dep-date 2026-01-29 --prev-depth 2
 ```
 
-This script prints JSON:
-- `{ "shouldNotify": false }` when nothing changed
-- `{ "shouldNotify": true, "message": "..." }` when something changed
+Output behavior:
+- **Prints nothing** when nothing changed
+- Prints a **ready-to-send multi-line message** when something changed
+
+The message is designed to be compact and human-readable:
+- Emojis for 🛫/🕤/🛬/✈️/📶
+- Weekday + date + time (to avoid timezone ambiguity)
+- Tail + aircraft type + cabin config summary
+- Wi‑Fi line (fast/slow) when available
+- Previous-flight chain summary (e.g. `↩️ Dubai → Paris → New York (on time)`)
+- Optional headline line highlighting what changed (new time, inbound delay, new aircraft, boarding started)
+
 
 ## Rate limits
 
